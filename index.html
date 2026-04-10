@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Redondos | Tributo a Patricio Rey</title>
+    <!-- Tailwind CSS desde CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ricota: '#b91c1c', /* Rojo oscuro, sangre */
+                        dark: '#0a0a0a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Fuentes de Google para complementar el diseño moderno -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
+    </style>
+</head>
+<body class="bg-dark text-gray-200 font-sans antialiased selection:bg-ricota selection:text-white">
+    
+    <!-- Navbar responsiva con Flexbox -->
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-ricota/30 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
+            <!-- Título / Logo -->
+            <div class="flex items-center gap-2">
+                <img src="./images/pr.png" alt="Patricio Rey" class="h-16 w-auto transform hover:scale-105 transition-transform cursor-default">
+            </div>
+            
+            <!-- Links (Flex, hidden en mobile, visibles en md:) -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#historia" class="text-gray-300 hover:text-white hover:text-ricota transition-colors">Historia</a>
+                <a href="#legado" class="text-gray-300 hover:text-white hover:text-ricota transition-colors">Legado</a>
+                <a href="#contacto" class="text-gray-300 hover:text-white hover:text-ricota transition-colors">Sumate</a>
+            </div>
+            
+            <!-- Botón Menú Mobile -->
+            <div class="md:hidden flex items-center">
+                <button class="text-gray-300 hover:text-white focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Flexbox, h-screen) -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Imagen de Fondo Absoluta -->
+        <div class="absolute inset-0 z-0">
+            <img src="./images/Oktubre.gif" alt="Los Redondos Vivo" class="w-full h-full object-cover object-bottom opacity-60">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-dark"></div>
+        </div>
+        
+        <!-- Contenido principal centrado -->
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight drop-shadow-lg">
+                La llama que <br> <span class="text-ricota">nunca se apaga</span>
+            </h1>
+            <p class="text-lg md:text-2xl text-gray-300 mb-10 font-serif max-w-2xl mx-auto leading-relaxed">
+                Tributo a la banda más influyente y convocante de la historia del rock argentino. El fenómeno de las misas ricoteras.
+            </p>
+            <!-- Botones (Flex columna en mobile, fila en sm:) interactivos -->
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#historia" class="px-8 py-4 bg-ricota text-white rounded-full font-semibold hover:bg-red-600 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(185,28,28,0.5)] transition-all duration-300 flex items-center justify-center">
+                    Descubrir la Misa
+                </a>
+                <a href="#legado" class="px-8 py-4 bg-transparent border border-gray-500 text-white rounded-full font-semibold hover:bg-white/10 hover:border-white transition-all duration-300 flex items-center justify-center">
+                    Explorar Legado
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Historia y Grid de imagen -->
+    <section id="historia" class="py-24 px-4 bg-dark">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 text-white">El Fenómeno <span class="text-ricota">Inexplicable</span></h2>
+                <div class="w-24 h-1 bg-ricota mx-auto rounded-full"></div>
+            </div>
+
+            <!-- CSS Grid (1 columna en mobile, 2 en pantallas medianas md:) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <!-- Texto y Detalles -->
+                <div class="space-y-6">
+                    <p class="text-lg text-gray-400 leading-relaxed font-serif">
+                        Formados en La Plata a mediados de los años 70, <strong class="text-gray-200">Patricio Rey y sus Redonditos de Ricota</strong> trascendieron la música para convertirse en un fenómeno cultural masivo sin precedentes. A través del boca a boca, la independencia y una estética inconfundible, construyeron un imperio desde los márgenes.
+                    </p>
+                    <p class="text-lg text-gray-400 leading-relaxed font-serif">
+                        Comandados por la voz y lírica críptica del <strong>Indio Solari</strong>, la guitarra mágica de <strong>Skay Beilinson</strong> y el arte oscuro e industrial de <strong>Rocambole</strong>, la banda transformó sus recitales en verdaderas "misas" de peregrinación popular.
+                    </p>
+                    <div class="pt-4">
+                        <a href="https://es.wikipedia.org/wiki/Patricio_Rey_y_sus_Redonditos_de_Ricota" target="_blank" class="inline-flex items-center text-ricota font-bold hover:text-red-400 transition-colors group">
+                            Leer más sobre su historia
+                            <svg class="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <!-- Card con imagen de arte y efecto hover complex -->
+                <div class="relative group rounded-2xl overflow-hidden shadow-2xl border border-gray-800 transform hover:scale-[1.02] transition-transform duration-500 w-full aspect-square bg-black">
+                    <div class="absolute inset-0 bg-ricota/20 group-hover:bg-transparent transition-colors z-10 duration-500 pointer-events-none"></div>
+                    
+                    <!-- Contenedor del Carrusel Automático -->
+                    <div class="absolute inset-0 w-full h-full z-0 transition-all duration-700">
+                        <!-- Tapas de discos -->
+                        <img src="./images/gulp.jpg" alt="Gulp!" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-100 carousel-img">
+                        <img src="./images/oktubre.jpg" alt="Oktubre" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-0 carousel-img">
+                        <img src="./images/baion.jpg" alt="Un Baión para el Ojo Idiota" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-0 carousel-img">
+                        <img src="./images/bang.jpg" alt="¡Bang! ¡Bang!... Estás liquidado" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-0 carousel-img">
+                        <img src="./images/mosca.jpg" alt="La Mosca y la Sopa" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-0 carousel-img">
+                        <img src="./images/lobo.jpg" alt="Lobo Suelto" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-0 carousel-img">
+                        <img src="./images/cordero.jpg" alt="Cordero Atado" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-0 carousel-img">
+                        <img src="./images/luzbelito.jpg" alt="Luzbelito" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-0 carousel-img">
+                        <img src="./images/bondi.jpg" alt="Último Bondi a Finisterre" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-0 carousel-img">
+                        <img src="./images/momo.jpg" alt="Momo Sampler" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-0 carousel-img">
+                        <!-- Imagen Agregada de Behance -->
+                        <img src="./images/nueva.jpg" alt="Arte Behance" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-0 carousel-img">
+                    </div>
+
+                    <!-- Texto Arriba a la Izquierda -->
+                    <div class="absolute top-0 inset-x-0 bg-gradient-to-b from-black via-black/80 to-transparent p-8 z-20 pointer-events-none text-left">
+                        <h3 class="text-2xl font-bold text-white mb-2">Estética Única</h3>
+                        <p class="text-gray-300">La gráfica siempre fue una extensión vital del manifiesto redondo.</p>
+                    </div>
+
+                    <!-- Botones de Control del Carrusel -->
+                    <div class="absolute bottom-6 right-6 flex gap-3 z-30 pointer-events-auto">
+                        <button id="btn-prev" aria-label="Anterior" class="bg-black/60 hover:bg-ricota text-white p-3 rounded-full backdrop-blur-md transition-colors border border-gray-600 hover:border-ricota focus:outline-none">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                        </button>
+                        <button id="btn-next" aria-label="Siguiente" class="bg-black/60 hover:bg-ricota text-white p-3 rounded-full backdrop-blur-md transition-colors border border-gray-600 hover:border-ricota focus:outline-none">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Legado / Features con Flexbox -->
+    <section id="legado" class="py-24 px-4 bg-gradient-to-b from-dark to-[#050505]">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="sr-only">Pilares de la banda</h2>
+            
+            <!-- Contenedor Flex para las Cards (Columna en sm y fila en md) -->
+            <div class="flex flex-col md:flex-row gap-8 justify-between">
+                
+                <!-- Tarjeta 1 - Alineación individual -->
+                <div class="flex-1 bg-black/50 p-8 rounded-2xl border border-gray-800 hover:-translate-y-2 hover:border-ricota/50 transition-all duration-300 shadow-xl group">
+                    <div class="w-14 h-14 bg-ricota/10 text-ricota border border-ricota/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-ricota group-hover:text-white transition-colors">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Independencia Feroz</h3>
+                    <p class="text-gray-400">Desafiaron a las discográficas y a la televisión de su época, forjando un éxito masivo sin apoyo corporativo.</p>
+                </div>
+                
+                <!-- Tarjeta 2 -->
+                <div class="flex-1 bg-black/50 p-8 rounded-2xl border border-gray-800 hover:-translate-y-2 hover:border-ricota/50 transition-all duration-300 shadow-xl group">
+                    <div class="w-14 h-14 bg-ricota/10 text-ricota border border-ricota/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-ricota group-hover:text-white transition-colors">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">La Misa Ricotera</h3>
+                    <p class="text-gray-400">Públicos que viajaban por todo el país, conformando las mayores y más místicas movilizaciones del rock en español.</p>
+                </div>
+                
+                <!-- Tarjeta 3 -->
+                <div class="flex-1 bg-black/50 p-8 rounded-2xl border border-gray-800 hover:-translate-y-2 hover:border-ricota/50 transition-all duration-300 shadow-xl group">
+                    <div class="w-14 h-14 bg-ricota/10 text-ricota border border-ricota/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-ricota group-hover:text-white transition-colors">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Poesía Inmortal</h3>
+                    <p class="text-gray-400">Frases callejeras, personajes marginales y fuertes metáforas que están tatuadas en la piel de varias generaciones.</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to action sencillo -->
+    <section id="contacto" class="py-20 border-t border-gray-900 bg-[#050505] text-center px-4">
+        <h2 class="text-3xl font-bold text-white mb-6">¿Llevás la música en la piel?</h2>
+        <p class="text-gray-400 mb-8 max-w-xl mx-auto">Preparate para escuchar Oktubre a todo volumen. La pasión se pasa de generación en generación.</p>
+        <a href="https://open.spotify.com/intl-es/artist/6byQKddO1b34lXC2ZEjehQ" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-red-800 border overflow-hidden relative border-red-500 text-white rounded font-bold hover:bg-ricota transition-all group">
+            <span class="relative z-10 transition-transform group-hover:-translate-y-1 block">Escuchar ahora</span>
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-10 text-center">
+        <!-- Uso sutil de márgenes y colores de texto -->
+        <p class="text-sm text-gray-400 font-mono tracking-widest uppercase">
+            Para Alien Duce<br>
+            Dios es digital
+        </p>
+    </footer>
+
+    <!-- Script para el carrusel de historia -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const carouselImages = document.querySelectorAll('.carousel-img');
+            const btnPrev = document.getElementById('btn-prev');
+            const btnNext = document.getElementById('btn-next');
+            let currentImageIndex = 0;
+            let autoPlayInterval;
+            
+            const showImage = (index) => {
+                carouselImages[currentImageIndex].classList.remove('opacity-100');
+                carouselImages[currentImageIndex].classList.add('opacity-0');
+                currentImageIndex = index;
+                carouselImages[currentImageIndex].classList.remove('opacity-0');
+                carouselImages[currentImageIndex].classList.add('opacity-100');
+            };
+
+            const nextImage = () => {
+                const newIndex = (currentImageIndex + 1) % carouselImages.length;
+                showImage(newIndex);
+            };
+
+            const prevImage = () => {
+                const newIndex = (currentImageIndex - 1 + carouselImages.length) % carouselImages.length;
+                showImage(newIndex);
+            };
+
+            const startAutoPlay = () => {
+                clearInterval(autoPlayInterval);
+                autoPlayInterval = setInterval(nextImage, 4000); // Cambia de imagen cada 4 segundos
+            };
+
+            if(carouselImages.length > 1) {
+                startAutoPlay();
+
+                if (btnNext && btnPrev) {
+                    btnNext.addEventListener('click', () => {
+                        nextImage();
+                        startAutoPlay(); // Reinicia el timer al hacer click
+                    });
+
+                    btnPrev.addEventListener('click', () => {
+                        prevImage();
+                        startAutoPlay(); // Reinicia el timer al hacer click
+                    });
+                }
+            } else if (btnNext && btnPrev) {
+                btnNext.style.display = 'none';
+                btnPrev.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
