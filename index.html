@@ -1,270 +1,1554 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Los Redondos | Tributo a Patricio Rey</title>
-    <!-- Tailwind CSS desde CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        ricota: '#b91c1c', /* Rojo oscuro, sangre */
-                        dark: '#0a0a0a',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Merriweather', 'serif'],
-                    }
-                }
+    <title>Patricio Rey y sus Redonditos de Ricota — Tributo</title>
+    <meta name="description"
+        content="Tributo a la banda más convocante del rock argentino. El fenómeno de las misas ricoteras. Patricio Rey y sus Redonditos de Ricota.">
+
+    <!-- Fuentes: Uncial Antiqua para títulos, Crimson Text para cuerpo, Space Mono para detalles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ============================================
+           SISTEMA DE DISEÑO — REDONDOS TRIBUTO
+           Paleta: Sepia, Tinta, Óxido, Humo
+        ============================================ */
+        :root {
+            --negro: #080603;
+            --tinta: #100d08;
+            --carbon: #1a1510;
+            --sepia-oscuro: #2e2218;
+            --sepia: #6b4f2d;
+            --oxido: #8b3a1a;
+            --rojo-vino: #6d1515;
+            --sangre: #9b1c1c;
+            --oro-viejo: #b8922a;
+            --ocre: #c9822a;
+            --crema: #e8d9b8;
+            --pergamino: #d4c49a;
+            --humo: #a09278;
+            --ceniza: #6e6050;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--negro);
+            color: var(--crema);
+            font-family: 'Crimson Text', Georgia, serif;
+            font-size: 18px;
+            line-height: 1.7;
+            overflow-x: hidden;
+            cursor: default;
+        }
+
+        /* ─── CURSOR PERSONALIZADO ─── */
+        body {
+            cursor: crosshair;
+        }
+
+        a,
+        button {
+            cursor: pointer;
+        }
+
+        /* ─── TEXTURA DE GRANO SOBRE TODO ─── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.035;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 200px 200px;
+        }
+
+        /* ─── SCROLLBAR TEMÁTICA ─── */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--negro);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--rojo-vino);
+            border-radius: 0;
+        }
+
+        /* ─── SELECCIÓN ─── */
+        ::selection {
+            background: var(--sangre);
+            color: var(--crema);
+        }
+
+        /* ============================================
+           NAVEGACIÓN
+        ============================================ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 clamp(1rem, 5vw, 3rem);
+            height: 72px;
+            background: linear-gradient(to bottom, rgba(8, 6, 3, 0.97), rgba(8, 6, 3, 0));
+            border-bottom: 1px solid rgba(107, 79, 45, 0.15);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            height: 50px;
+            width: auto;
+            filter: sepia(1) contrast(1.2) brightness(0.85);
+            transition: filter 0.4s;
+        }
+
+        .nav-logo:hover img {
+            filter: sepia(0.5) contrast(1.4) brightness(1.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: clamp(1.5rem, 3vw, 3rem);
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--humo);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--oxido);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-links a:hover {
+            color: var(--crema);
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        .nav-hamburger span {
+            display: block;
+            width: 24px;
+            height: 1px;
+            background: var(--humo);
+            transition: all 0.3s;
+        }
+
+        /* ============================================
+           HERO
+        ============================================ */
+        .hero {
+            position: relative;
+            height: 100svh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* GIF de fondo con efectos de procesamiento visual */
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            filter: sepia(0.6) contrast(1.3) brightness(0.45) saturate(0.7);
+            mix-blend-mode: luminosity;
+        }
+
+        /* Capa de color sobre el GIF */
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 40%, rgba(139, 58, 26, 0.25) 0%, transparent 70%),
+                linear-gradient(to bottom, rgba(8, 6, 3, 0.3) 0%, rgba(8, 6, 3, 0.2) 40%, rgba(8, 6, 3, 0.92) 100%);
+            mix-blend-mode: multiply;
+        }
+
+        /* Líneas de escaneo — extra textura retro */
+        .hero-scanlines {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background: repeating-linear-gradient(0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 0, 0, 0.15) 2px,
+                    rgba(0, 0, 0, 0.15) 4px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 clamp(1rem, 6vw, 4rem);
+            max-width: 900px;
+            animation: fadeReveal 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        @keyframes fadeReveal {
+            from {
+                opacity: 0;
+                transform: translateY(32px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
-    </script>
-    <!-- Fuentes de Google para complementar el diseño moderno -->
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
+
+        .hero-eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--oxido);
+            margin-bottom: 1.5rem;
+            animation: fadeReveal 1.8s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .hero-title {
+            font-family: 'Uncial Antiqua', serif;
+            font-size: clamp(2.8rem, 8vw, 7rem);
+            line-height: 1.05;
+            color: var(--crema);
+            text-shadow:
+                0 0 40px rgba(139, 58, 26, 0.4),
+                2px 3px 0 rgba(0, 0, 0, 0.8);
+            margin-bottom: 1.5rem;
+            animation: fadeReveal 1.8s 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .hero-title .highlight {
+            color: var(--oxido);
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.35rem);
+            color: var(--pergamino);
+            font-style: italic;
+            max-width: 560px;
+            margin: 0 auto 2.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+            animation: fadeReveal 1.8s 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeReveal 1.8s 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        /* ─── BOTONES ─── */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 2rem;
+            background: var(--rojo-vino);
+            color: var(--crema);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid var(--sangre);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--oxido);
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-primary:hover::before {
+            transform: translateX(0);
+        }
+
+        .btn-primary:hover {
+            border-color: var(--ocre);
+            box-shadow: 0 0 30px rgba(139, 58, 26, 0.4);
+        }
+
+        .btn-primary span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 2rem;
+            background: transparent;
+            color: var(--humo);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid var(--sepia);
+            transition: all 0.4s;
+        }
+
+        .btn-secondary:hover {
+            color: var(--crema);
+            border-color: var(--crema);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        /* ─── SCROLL INDICATOR ─── */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            animation: fadeReveal 2s 1.5s both, bounce 2.5s 2s infinite;
+        }
+
+        .scroll-indicator span {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.55rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--sepia);
+        }
+
+        .scroll-indicator svg {
+            color: var(--sepia);
+            width: 20px;
+            height: 20px;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(8px);
+            }
+        }
+
+
+        /* ============================================
+           DECORADOR DIVISORIO — SÍMBOLO RICOTA
+        ============================================ */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 0 clamp(1rem, 5vw, 4rem);
+            margin: 0;
+        }
+
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--sepia-oscuro), var(--sepia), var(--sepia-oscuro), transparent);
+        }
+
+        .divider-symbol {
+            font-family: 'Uncial Antiqua', serif;
+            font-size: 1.4rem;
+            color: var(--oxido);
+            opacity: 0.6;
+            user-select: none;
+        }
+
+
+        /* ============================================
+           SECCIÓN: HISTORIA
+        ============================================ */
+        #historia {
+            padding: clamp(4rem, 8vw, 8rem) clamp(1rem, 5vw, 4rem);
+            background: var(--tinta);
+            position: relative;
+        }
+
+        /* Patrón de fondo decorativo */
+        #historia::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.025;
+            background-image:
+                radial-gradient(circle, var(--crema) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .historia-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(2rem, 5vw, 5rem);
+            align-items: start;
+        }
+
+        .historia-text {
+            position: relative;
+        }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.62rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--oxido);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .section-label::before {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 1px;
+            background: var(--oxido);
+        }
+
+        .section-title {
+            font-family: 'Uncial Antiqua', serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            line-height: 1.1;
+            color: var(--crema);
+            margin-bottom: 2rem;
+        }
+
+        .section-title em {
+            color: var(--oxido);
+            font-style: italic;
+        }
+
+        .historia-body p {
+            color: var(--pergamino);
+            margin-bottom: 1.4rem;
+            font-size: 1.05rem;
+        }
+
+        .historia-body strong {
+            color: var(--crema);
+            font-weight: 600;
+        }
+
+        .historia-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--oxido);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-decoration: none;
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .historia-link svg {
+            width: 14px;
+            height: 14px;
+            transition: transform 0.3s;
+        }
+
+        .historia-link:hover {
+            color: var(--ocre);
+        }
+
+        .historia-link:hover svg {
+            transform: translateX(5px);
+        }
+
+        /* ─── CARRUSEL ─── */
+        .carousel-wrapper {
+            position: sticky;
+            top: 6rem;
+            aspect-ratio: 1 / 1;
+            background: var(--carbon);
+            border: 1px solid var(--sepia-oscuro);
+            overflow: hidden;
+        }
+
+        /* Marco de película / daguerrotipo */
+        .carousel-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+            pointer-events: none;
+            background:
+                linear-gradient(to right, rgba(8, 6, 3, 0.7) 0%, transparent 8%, transparent 92%, rgba(8, 6, 3, 0.7) 100%),
+                linear-gradient(to bottom, rgba(8, 6, 3, 0.6) 0%, transparent 10%, transparent 90%, rgba(8, 6, 3, 0.6) 100%);
+        }
+
+        .carousel-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            z-index: 11;
+            pointer-events: none;
+            border: 1px solid rgba(107, 79, 45, 0.2);
+        }
+
+        .carousel-track {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            opacity: 0;
+            transition: opacity 1s ease;
+            filter: sepia(0.3) contrast(1.1);
+        }
+
+        .carousel-img.active {
+            opacity: 1;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 12;
+            padding: 2rem 1.5rem 1.2rem;
+            background: linear-gradient(to top, rgba(8, 6, 3, 0.95) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .carousel-caption-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.62rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--pergamino);
+            opacity: 0;
+            transition: opacity 0.5s 0.3s;
+        }
+
+        .carousel-img.active~.carousel-caption .carousel-caption-title {
+            opacity: 1;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 20;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .carousel-btn {
+            width: 36px;
+            height: 36px;
+            background: rgba(8, 6, 3, 0.7);
+            border: 1px solid var(--sepia-oscuro);
+            color: var(--humo);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            backdrop-filter: blur(4px);
+        }
+
+        .carousel-btn:hover {
+            background: var(--rojo-vino);
+            border-color: var(--sangre);
+            color: var(--crema);
+        }
+
+        .carousel-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            z-index: 20;
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            max-width: 120px;
+        }
+
+        .dot {
+            width: 5px;
+            height: 5px;
+            background: var(--sepia);
+            border-radius: 0;
+            transition: background 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: var(--oxido);
+            transform: scale(1.5);
+        }
+
+
+        /* ============================================
+           SECCIÓN: PILARES
+        ============================================ */
+        #legado {
+            padding: clamp(4rem, 8vw, 8rem) clamp(1rem, 5vw, 4rem);
+            background: var(--negro);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Gran texto fantasma de fondo */
+        #legado::before {
+            content: 'RICOTA';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Uncial Antiqua', serif;
+            font-size: clamp(8rem, 20vw, 20rem);
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(107, 79, 45, 0.06);
+            pointer-events: none;
+            white-space: nowrap;
+            user-select: none;
+            letter-spacing: 0.1em;
+        }
+
+        .legado-header {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+
+        .pilares-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5px;
+            background: var(--sepia-oscuro);
+            border: 1.5px solid var(--sepia-oscuro);
+        }
+
+        .pilar-card {
+            background: var(--tinta);
+            padding: clamp(2rem, 3vw, 3rem);
+            position: relative;
+            overflow: hidden;
+            transition: background 0.5s;
+        }
+
+        .pilar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--rojo-vino);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .pilar-card:hover {
+            background: var(--carbon);
+        }
+
+        .pilar-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .pilar-number {
+            font-family: 'Uncial Antiqua', serif;
+            font-size: 4rem;
+            color: var(--sepia-oscuro);
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            transition: color 0.5s;
+        }
+
+        .pilar-card:hover .pilar-number {
+            color: rgba(139, 58, 26, 0.2);
+        }
+
+        .pilar-icon {
+            width: 44px;
+            height: 44px;
+            color: var(--oxido);
+            margin-bottom: 1.5rem;
+        }
+
+        .pilar-title {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--crema);
+            margin-bottom: 1rem;
+            letter-spacing: 0.01em;
+        }
+
+        .pilar-text {
+            color: var(--humo);
+            font-size: 0.95rem;
+            line-height: 1.75;
+        }
+
+
+        /* ============================================
+           SECCIÓN: CITA POÉTICA
+        ============================================ */
+        .quote-section {
+            padding: clamp(5rem, 10vw, 10rem) clamp(1rem, 5vw, 4rem);
+            background: var(--rojo-vino);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Patrón geométrico oscuro */
+        .quote-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.07;
+            background-image:
+                linear-gradient(45deg, var(--crema) 25%, transparent 25%),
+                linear-gradient(-45deg, var(--crema) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, var(--crema) 75%),
+                linear-gradient(-45deg, transparent 75%, var(--crema) 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+
+        .quote-mark {
+            font-family: 'Uncial Antiqua', serif;
+            font-size: clamp(5rem, 12vw, 10rem);
+            color: rgba(255, 255, 255, 0.08);
+            line-height: 0.5;
+            margin-bottom: 2rem;
+            display: block;
+            user-select: none;
+        }
+
+        .quote-text {
+            font-family: 'Crimson Text', serif;
+            font-size: clamp(1.6rem, 4vw, 2.8rem);
+            font-style: italic;
+            color: var(--crema);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.35;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .quote-author {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(232, 217, 184, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+
+
+        /* ============================================
+           SECCIÓN: DISCOGRAFÍA
+        ============================================ */
+        #discografia {
+            padding: clamp(4rem, 8vw, 8rem) clamp(1rem, 5vw, 4rem);
+            background: var(--carbon);
+        }
+
+        .discografia-header {
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+
+        .albums-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 1rem;
+        }
+
+        .album-card {
+            position: relative;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            background: var(--sepia-oscuro);
+            border: 1px solid var(--sepia-oscuro);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .album-card:hover {
+            transform: scale(1.04) translateY(-4px);
+            z-index: 2;
+        }
+
+        .album-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(0.25) contrast(1.05);
+            transition: filter 0.5s;
+        }
+
+        .album-card:hover img {
+            filter: sepia(0) contrast(1.1) brightness(0.7);
+        }
+
+        .album-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(8, 6, 3, 0.95) 0%, transparent 55%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            display: flex;
+            align-items: flex-end;
+            padding: 1rem;
+        }
+
+        .album-card:hover .album-overlay {
+            opacity: 1;
+        }
+
+        .album-name {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--crema);
+            line-height: 1.4;
+        }
+
+
+        /* ============================================
+           SECCIÓN: CONVOCATORIA / CTA
+        ============================================ */
+        #contacto {
+            padding: clamp(4rem, 10vw, 10rem) clamp(1rem, 5vw, 4rem);
+            background: var(--tinta);
+            text-align: center;
+            position: relative;
+        }
+
+        /* Borde superior decorativo */
+        #contacto::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--sepia), transparent);
+        }
+
+        .cta-eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.62rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--oxido);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-title {
+            font-family: 'Uncial Antiqua', serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            color: var(--crema);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-text {
+            font-size: 1.1rem;
+            color: var(--humo);
+            max-width: 480px;
+            margin: 0 auto 2.5rem;
+            font-style: italic;
+        }
+
+        .cta-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        /* ─── Spotify button especial ─── */
+        .btn-spotify {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.9rem 2rem;
+            background: #1DB954;
+            color: var(--negro);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-weight: 700;
+            border: none;
+            transition: all 0.4s;
+        }
+
+        .btn-spotify svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .btn-spotify:hover {
+            background: #17a844;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(29, 185, 84, 0.3);
+        }
+
+
+        /* ============================================
+           FOOTER
+        ============================================ */
+        footer {
+            background: var(--negro);
+            border-top: 1px solid var(--sepia-oscuro);
+            padding: 3rem clamp(1rem, 5vw, 4rem);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .footer-brand {
+            font-family: 'Uncial Antiqua', serif;
+            font-size: 1.2rem;
+            color: var(--sepia);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-tagline {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--ceniza);
+            text-align: center;
+            line-height: 2;
+        }
+
+        .footer-tagline strong {
+            color: var(--oxido);
+        }
+
+        .footer-sep {
+            width: 60px;
+            height: 1px;
+            background: var(--sepia-oscuro);
+        }
+
+
+        /* ============================================
+           RESPONSIVE
+        ============================================ */
+        @media (max-width: 900px) {
+            .historia-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .carousel-wrapper {
+                position: relative;
+                top: 0;
+            }
+
+            .pilares-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-hamburger {
+                display: flex;
+            }
+
+            .albums-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            }
+        }
+
+        /* Mobile menu abierto */
+        .nav-links.open {
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            inset: 72px 0 0 0;
+            background: rgba(8, 6, 3, 0.98);
+            padding: 3rem 2rem;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            backdrop-filter: blur(8px);
+        }
+
+        .nav-links.open a {
+            font-size: 1rem;
+        }
+
+        /* ============================================
+           ANIMACIONES DE ENTRADA (SCROLL)
+        ============================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        .reveal-delay-4 {
+            transition-delay: 0.4s;
+        }
     </style>
 </head>
-<body class="bg-dark text-gray-200 font-sans antialiased selection:bg-ricota selection:text-white">
-    
-    <!-- Navbar responsiva con Flexbox -->
-    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-ricota/30 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
-            <!-- Título / Logo -->
-            <div class="flex items-center gap-2">
-                <img src="./images/pr.png" alt="Patricio Rey" class="h-16 w-auto transform hover:scale-105 transition-transform cursor-default">
-            </div>
-            
-            <!-- Links (Flex, hidden en mobile, visibles en md:) -->
-            <div class="hidden md:flex space-x-8">
-                <a href="#historia" class="text-gray-300 hover:text-white hover:text-ricota transition-colors">Historia</a>
-                <a href="#legado" class="text-gray-300 hover:text-white hover:text-ricota transition-colors">Legado</a>
-                <a href="#contacto" class="text-gray-300 hover:text-white hover:text-ricota transition-colors">Sumate</a>
-            </div>
-            
-            <!-- Botón Menú Mobile -->
-            <div class="md:hidden flex items-center">
-                <button class="text-gray-300 hover:text-white focus:outline-none">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
+
+<body>
+
+    <!-- ═══════════════════════════════════════
+         NAVEGACIÓN
+    ═══════════════════════════════════════ -->
+    <nav id="main-nav" aria-label="Navegación principal">
+        <a href="#" class="nav-logo" aria-label="Inicio">
+            <img src="./images/pr.png" alt="Patricio Rey y sus Redonditos de Ricota">
+        </a>
+
+        <ul class="nav-links" id="nav-links" role="list">
+            <li><a href="#historia">Historia</a></li>
+            <li><a href="#legado">Legado</a></li>
+            <li><a href="#discografia">Discos</a></li>
+            <li><a href="#contacto">Sumate</a></li>
+        </ul>
+
+        <button class="nav-hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
 
-    <!-- Hero Section (Flexbox, h-screen) -->
-    <section class="relative h-screen flex items-center justify-center overflow-hidden">
-        <!-- Imagen de Fondo Absoluta -->
-        <div class="absolute inset-0 z-0">
-            <img src="./images/Oktubre.gif" alt="Los Redondos Vivo" class="w-full h-full object-cover object-bottom opacity-60">
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-dark"></div>
+
+    <!-- ═══════════════════════════════════════
+         HERO
+    ═══════════════════════════════════════ -->
+    <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-bg">
+            <img src="./images/Oktubre.gif" alt="Recital de Los Redondos">
         </div>
-        
-        <!-- Contenido principal centrado -->
-        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight drop-shadow-lg">
-                La llama que <br> <span class="text-ricota">nunca se apaga</span>
+        <div class="hero-scanlines" aria-hidden="true"></div>
+
+        <div class="hero-content">
+            <p class="hero-eyebrow">La Plata · 1976 — 2001</p>
+            <h1 class="hero-title" id="hero-title">
+                Patricio rey<br>
+                <em class="highlight">y sus redonditos de Ricota</em>
             </h1>
-            <p class="text-lg md:text-2xl text-gray-300 mb-10 font-serif max-w-2xl mx-auto leading-relaxed">
-                Tributo a la banda más influyente y convocante de la historia del rock argentino. El fenómeno de las misas ricoteras.
+            <p class="hero-subtitle">
+                Patricio Rey y sus Redonditos de Ricota.<br>
+                El fenómeno de las misas ricoteras.
             </p>
-            <!-- Botones (Flex columna en mobile, fila en sm:) interactivos -->
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#historia" class="px-8 py-4 bg-ricota text-white rounded-full font-semibold hover:bg-red-600 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(185,28,28,0.5)] transition-all duration-300 flex items-center justify-center">
-                    Descubrir la Misa
+            <div class="hero-ctas">
+                <a href="#historia" class="btn-primary" id="cta-descubrir">
+                    <span>Descubrir la misa</span>
                 </a>
-                <a href="#legado" class="px-8 py-4 bg-transparent border border-gray-500 text-white rounded-full font-semibold hover:bg-white/10 hover:border-white transition-all duration-300 flex items-center justify-center">
-                    Explorar Legado
+                <a href="#discografia" class="btn-secondary" id="cta-discografia">
+                    Ver discografía
                 </a>
             </div>
         </div>
+
+        <div class="scroll-indicator" aria-hidden="true">
+            <span>Scroll</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+        </div>
     </section>
 
-    <!-- Sección de Historia y Grid de imagen -->
-    <section id="historia" class="py-24 px-4 bg-dark">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold mb-4 text-white">El Fenómeno <span class="text-ricota">Inexplicable</span></h2>
-                <div class="w-24 h-1 bg-ricota mx-auto rounded-full"></div>
+
+    <!-- ═══════════════════════════════════════
+         DIVISOR
+    ═══════════════════════════════════════ -->
+    <div class="divider" aria-hidden="true">
+        <div class="divider-line"></div>
+        <div class="divider-symbol">✦</div>
+        <div class="divider-line"></div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════
+         HISTORIA
+    ═══════════════════════════════════════ -->
+    <section id="historia" aria-labelledby="historia-title">
+        <div class="historia-grid">
+
+            <!-- Texto -->
+            <div class="historia-text reveal">
+                <p class="section-label">El fenómeno inexplicable</p>
+                <h2 class="section-title" id="historia-title">
+                    Del underground<br>
+                    a la <em>Misa</em>
+                </h2>
+                <div class="historia-body">
+                    <p>
+                        Formados en La Plata a mediados de los años 70, <strong>Patricio Rey y sus Redonditos de
+                            Ricota</strong> trascendieron la música para convertirse en un fenómeno cultural sin
+                        precedentes. A través del boca a boca, la independencia absoluta y una estética inconfundible,
+                        construyeron un imperio desde los márgenes.
+                    </p>
+                    <p>
+                        Comandados por la voz y lírica críptica del <strong>Indio Solari</strong>, la guitarra certera
+                        de <strong>Skay Beilinson</strong> y el arte oscuro e industrial de <strong>Rocambole</strong>,
+                        la banda transformó sus recitales en verdaderas "misas" de peregrinación popular.
+                    </p>
+                    <p>
+                        Su legado excede la música: es lengua, es mística, es identidad. Frases callejeras que
+                        sobreviven tatuadas en la piel de varias generaciones de argentinos.
+                    </p>
+                    <a href="https://es.wikipedia.org/wiki/Patricio_Rey_y_sus_Redonditos_de_Ricota" target="_blank"
+                        rel="noopener noreferrer" class="historia-link" id="link-wikipedia">
+                        Leer más en Wikipedia
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
             </div>
 
-            <!-- CSS Grid (1 columna en mobile, 2 en pantallas medianas md:) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <!-- Texto y Detalles -->
-                <div class="space-y-6">
-                    <p class="text-lg text-gray-400 leading-relaxed font-serif">
-                        Formados en La Plata a mediados de los años 70, <strong class="text-gray-200">Patricio Rey y sus Redonditos de Ricota</strong> trascendieron la música para convertirse en un fenómeno cultural masivo sin precedentes. A través del boca a boca, la independencia y una estética inconfundible, construyeron un imperio desde los márgenes.
-                    </p>
-                    <p class="text-lg text-gray-400 leading-relaxed font-serif">
-                        Comandados por la voz y lírica críptica del <strong>Indio Solari</strong>, la guitarra mágica de <strong>Skay Beilinson</strong> y el arte oscuro e industrial de <strong>Rocambole</strong>, la banda transformó sus recitales en verdaderas "misas" de peregrinación popular.
-                    </p>
-                    <div class="pt-4">
-                        <a href="https://es.wikipedia.org/wiki/Patricio_Rey_y_sus_Redonditos_de_Ricota" target="_blank" class="inline-flex items-center text-ricota font-bold hover:text-red-400 transition-colors group">
-                            Leer más sobre su historia
-                            <svg class="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                        </a>
-                    </div>
+            <!-- Carrusel -->
+            <div class="carousel-wrapper reveal reveal-delay-2">
+                <div class="carousel-track" id="carousel-track">
+                    <img src="./images/gulp.jpg" alt="Gulp!" class="carousel-img active" data-album="Gulp!">
+                    <img src="./images/oktubre.jpg" alt="Oktubre" class="carousel-img" data-album="Oktubre">
+                    <img src="./images/baion.jpg" alt="Un Baión para el Ojo Idiota" class="carousel-img"
+                        data-album="Un Baión para el Ojo Idiota">
+                    <img src="./images/bang.jpg" alt="¡Bang! ¡Bang!... Estás liquidado" class="carousel-img"
+                        data-album="¡Bang! ¡Bang!...">
+                    <img src="./images/mosca.jpg" alt="La Mosca y la Sopa" class="carousel-img"
+                        data-album="La Mosca y la Sopa">
+                    <img src="./images/lobo.jpg" alt="Lobo Suelto" class="carousel-img" data-album="Lobo Suelto">
+                    <img src="./images/cordero.jpg" alt="Cordero Atado" class="carousel-img" data-album="Cordero Atado">
+                    <img src="./images/luzbelito.jpg" alt="Luzbelito" class="carousel-img" data-album="Luzbelito">
+                    <img src="./images/bondi.jpg" alt="Último Bondi a Finisterre" class="carousel-img"
+                        data-album="Último Bondi a Finisterre">
+                    <img src="./images/momo.jpg" alt="Momo Sampler" class="carousel-img" data-album="Momo Sampler">
                 </div>
-                <!-- Card con imagen de arte y efecto hover complex -->
-                <div class="relative group rounded-2xl overflow-hidden shadow-2xl border border-gray-800 transform hover:scale-[1.02] transition-transform duration-500 w-full aspect-square bg-black">
-                    <div class="absolute inset-0 bg-ricota/20 group-hover:bg-transparent transition-colors z-10 duration-500 pointer-events-none"></div>
-                    
-                    <!-- Contenedor del Carrusel Automático -->
-                    <div class="absolute inset-0 w-full h-full z-0 transition-all duration-700">
-                        <!-- Tapas de discos -->
-                        <img src="./images/gulp.jpg" alt="Gulp!" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-100 carousel-img">
-                        <img src="./images/oktubre.jpg" alt="Oktubre" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-0 carousel-img">
-                        <img src="./images/baion.jpg" alt="Un Baión para el Ojo Idiota" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-0 carousel-img">
-                        <img src="./images/bang.jpg" alt="¡Bang! ¡Bang!... Estás liquidado" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-0 carousel-img">
-                        <img src="./images/mosca.jpg" alt="La Mosca y la Sopa" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-0 carousel-img">
-                        <img src="./images/lobo.jpg" alt="Lobo Suelto" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-0 carousel-img">
-                        <img src="./images/cordero.jpg" alt="Cordero Atado" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-0 carousel-img">
-                        <img src="./images/luzbelito.jpg" alt="Luzbelito" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-0 carousel-img">
-                        <img src="./images/bondi.jpg" alt="Último Bondi a Finisterre" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-0 carousel-img">
-                        <img src="./images/momo.jpg" alt="Momo Sampler" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-0 carousel-img">
-                        <!-- Imagen Agregada de Behance -->
-                        <img src="./images/nueva.jpg" alt="Arte Behance" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 opacity-0 carousel-img">
-                    </div>
 
-                    <!-- Texto Arriba a la Izquierda -->
-                    <div class="absolute top-0 inset-x-0 bg-gradient-to-b from-black via-black/80 to-transparent p-8 z-20 pointer-events-none text-left">
-                        <h3 class="text-2xl font-bold text-white mb-2">Estética Única</h3>
-                        <p class="text-gray-300">La gráfica siempre fue una extensión vital del manifiesto redondo.</p>
-                    </div>
+                <div class="carousel-caption" aria-live="polite">
+                    <p class="carousel-caption-title" id="carousel-album-name">Gulp!</p>
+                </div>
 
-                    <!-- Botones de Control del Carrusel -->
-                    <div class="absolute bottom-6 right-6 flex gap-3 z-30 pointer-events-auto">
-                        <button id="btn-prev" aria-label="Anterior" class="bg-black/60 hover:bg-ricota text-white p-3 rounded-full backdrop-blur-md transition-colors border border-gray-600 hover:border-ricota focus:outline-none">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-                        </button>
-                        <button id="btn-next" aria-label="Siguiente" class="bg-black/60 hover:bg-ricota text-white p-3 rounded-full backdrop-blur-md transition-colors border border-gray-600 hover:border-ricota focus:outline-none">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-                        </button>
-                    </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn" id="btn-prev" aria-label="Disco anterior">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
+                    </button>
+                    <button class="carousel-btn" id="btn-next" aria-label="Disco siguiente">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round">
+                            <path d="M9 18l6-6-6-6" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="carousel-dots" id="carousel-dots" aria-label="Navegación de discos"></div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         CITA POÉTICA
+    ═══════════════════════════════════════ -->
+    <div class="quote-section reveal" role="blockquote">
+        <span class="quote-mark" aria-hidden="true">"</span>
+        <p class="quote-text">
+            Será que andamos buscando algo que no perdimos,<br>
+            en lugares que ya olvidamos.
+        </p>
+        <p class="quote-author">— El Indio Solari</p>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════
+         LEGADO / PILARES
+    ═══════════════════════════════════════ -->
+    <section id="legado" aria-labelledby="legado-title">
+        <div class="legado-header reveal">
+            <p class="section-label" style="justify-content:center">Sus pilares</p>
+            <h2 class="section-title" id="legado-title" style="text-align:center">Lo que los hizo <em>eternos</em></h2>
+        </div>
+
+        <div class="pilares-grid">
+            <!-- Pilar 1 -->
+            <div class="pilar-card reveal">
+                <div class="pilar-number" aria-hidden="true">01</div>
+                <svg class="pilar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" aria-hidden="true">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                </svg>
+                <h3 class="pilar-title">Independencia Feroz</h3>
+                <p class="pilar-text">Desafiaron a las discográficas y a la televisión de su época, forjando un éxito
+                    masivo sin apoyo corporativo. Fueron dueños absolutos de su obra.</p>
+            </div>
+
+            <!-- Pilar 2 -->
+            <div class="pilar-card reveal reveal-delay-1">
+                <div class="pilar-number" aria-hidden="true">02</div>
+                <svg class="pilar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 8v4l3 3" />
+                </svg>
+                <h3 class="pilar-title">La Misa Ricotera</h3>
+                <p class="pilar-text">Públicos que viajaban por todo el país en peregrinación. Las mayores y más
+                    místicas movilizaciones del rock en español, sin ningún aparato mediático.</p>
+            </div>
+
+            <!-- Pilar 3 -->
+            <div class="pilar-card reveal reveal-delay-2">
+                <div class="pilar-number" aria-hidden="true">03</div>
+                <svg class="pilar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" aria-hidden="true">
+                    <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+                </svg>
+                <h3 class="pilar-title">Poesía Inmortal</h3>
+                <p class="pilar-text">Frase callejera, personaje marginal y metáfora afilada. La lírica del Indio Solari
+                    está tatuada en la piel de varias generaciones de argentinos.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         DISCOGRAFÍA
+    ═══════════════════════════════════════ -->
+    <section id="discografia" aria-labelledby="discografia-title">
+        <div class="discografia-header reveal">
+            <p class="section-label">1985 — 2000</p>
+            <h2 class="section-title" id="discografia-title">La <em>Obra</em></h2>
+        </div>
+
+        <div class="albums-grid">
+            <div class="album-card reveal">
+                <img src="./images/gulp.jpg" alt="Gulp! — 1985" loading="lazy">
+                <div class="album-overlay">
+                    <p class="album-name">Gulp!<br>1985</p>
+                </div>
+            </div>
+            <div class="album-card reveal reveal-delay-1">
+                <img src="./images/oktubre.jpg" alt="Oktubre — 1986" loading="lazy">
+                <div class="album-overlay">
+                    <p class="album-name">Oktubre<br>1986</p>
+                </div>
+            </div>
+            <div class="album-card reveal reveal-delay-2">
+                <img src="./images/baion.jpg" alt="Un Baión para el Ojo Idiota — 1988" loading="lazy">
+                <div class="album-overlay">
+                    <p class="album-name">Un Baión para el Ojo Idiota<br>1988</p>
+                </div>
+            </div>
+            <div class="album-card reveal reveal-delay-3">
+                <img src="./images/bang.jpg" alt="¡Bang! ¡Bang!... Estás liquidado — 1989" loading="lazy">
+                <div class="album-overlay">
+                    <p class="album-name">¡Bang! ¡Bang!...<br>1989</p>
+                </div>
+            </div>
+            <div class="album-card reveal">
+                <img src="./images/mosca.jpg" alt="La Mosca y la Sopa — 1991" loading="lazy">
+                <div class="album-overlay">
+                    <p class="album-name">La Mosca y la Sopa<br>1991</p>
+                </div>
+            </div>
+            <div class="album-card reveal reveal-delay-1">
+                <img src="./images/lobo.jpg" alt="Lobo Suelto — 1993" loading="lazy">
+                <div class="album-overlay">
+                    <p class="album-name">Lobo Suelto<br>1993</p>
+                </div>
+            </div>
+            <div class="album-card reveal reveal-delay-2">
+                <img src="./images/cordero.jpg" alt="Cordero Atado — 1993" loading="lazy">
+                <div class="album-overlay">
+                    <p class="album-name">Cordero Atado<br>1993</p>
+                </div>
+            </div>
+            <div class="album-card reveal reveal-delay-3">
+                <img src="./images/luzbelito.jpg" alt="Luzbelito — 1996" loading="lazy">
+                <div class="album-overlay">
+                    <p class="album-name">Luzbelito<br>1996</p>
+                </div>
+            </div>
+            <div class="album-card reveal">
+                <img src="./images/bondi.jpg" alt="Último Bondi a Finisterre — 1998" loading="lazy">
+                <div class="album-overlay">
+                    <p class="album-name">Último Bondi a Finisterre<br>1998</p>
+                </div>
+            </div>
+            <div class="album-card reveal reveal-delay-1">
+                <img src="./images/momo.jpg" alt="Momo Sampler — 2000" loading="lazy">
+                <div class="album-overlay">
+                    <p class="album-name">Momo Sampler<br>2000</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sección Legado / Features con Flexbox -->
-    <section id="legado" class="py-24 px-4 bg-gradient-to-b from-dark to-[#050505]">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="sr-only">Pilares de la banda</h2>
-            
-            <!-- Contenedor Flex para las Cards (Columna en sm y fila en md) -->
-            <div class="flex flex-col md:flex-row gap-8 justify-between">
-                
-                <!-- Tarjeta 1 - Alineación individual -->
-                <div class="flex-1 bg-black/50 p-8 rounded-2xl border border-gray-800 hover:-translate-y-2 hover:border-ricota/50 transition-all duration-300 shadow-xl group">
-                    <div class="w-14 h-14 bg-ricota/10 text-ricota border border-ricota/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-ricota group-hover:text-white transition-colors">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Independencia Feroz</h3>
-                    <p class="text-gray-400">Desafiaron a las discográficas y a la televisión de su época, forjando un éxito masivo sin apoyo corporativo.</p>
-                </div>
-                
-                <!-- Tarjeta 2 -->
-                <div class="flex-1 bg-black/50 p-8 rounded-2xl border border-gray-800 hover:-translate-y-2 hover:border-ricota/50 transition-all duration-300 shadow-xl group">
-                    <div class="w-14 h-14 bg-ricota/10 text-ricota border border-ricota/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-ricota group-hover:text-white transition-colors">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">La Misa Ricotera</h3>
-                    <p class="text-gray-400">Públicos que viajaban por todo el país, conformando las mayores y más místicas movilizaciones del rock en español.</p>
-                </div>
-                
-                <!-- Tarjeta 3 -->
-                <div class="flex-1 bg-black/50 p-8 rounded-2xl border border-gray-800 hover:-translate-y-2 hover:border-ricota/50 transition-all duration-300 shadow-xl group">
-                    <div class="w-14 h-14 bg-ricota/10 text-ricota border border-ricota/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-ricota group-hover:text-white transition-colors">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Poesía Inmortal</h3>
-                    <p class="text-gray-400">Frases callejeras, personajes marginales y fuertes metáforas que están tatuadas en la piel de varias generaciones.</p>
-                </div>
-                
-            </div>
+
+    <!-- ═══════════════════════════════════════
+         CTA
+    ═══════════════════════════════════════ -->
+    <section id="contacto" aria-labelledby="cta-title">
+        <p class="cta-eyebrow reveal">¿Llevás la música en la piel?</p>
+        <h2 class="cta-title reveal" id="cta-title">La pasión se pasa<br>de <em
+                style="color:var(--oxido);font-style:italic">generación en generación</em></h2>
+        <p class="cta-text reveal">
+            Preparate para escuchar Oktubre a todo volumen.<br>
+            Dios es digital.
+        </p>
+        <div class="cta-actions reveal">
+            <a href="https://open.spotify.com/intl-es/artist/6byQKddO1b34lXC2ZEjehQ" target="_blank"
+                rel="noopener noreferrer" class="btn-spotify" id="btn-spotify">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                        d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
+                </svg>
+                Escuchar en Spotify
+            </a>
+            <a href="#historia" class="btn-secondary" id="cta-volver">
+                Volver al inicio
+            </a>
         </div>
     </section>
 
-    <!-- Call to action sencillo -->
-    <section id="contacto" class="py-20 border-t border-gray-900 bg-[#050505] text-center px-4">
-        <h2 class="text-3xl font-bold text-white mb-6">¿Llevás la música en la piel?</h2>
-        <p class="text-gray-400 mb-8 max-w-xl mx-auto">Preparate para escuchar Oktubre a todo volumen. La pasión se pasa de generación en generación.</p>
-        <a href="https://open.spotify.com/intl-es/artist/6byQKddO1b34lXC2ZEjehQ" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-red-800 border overflow-hidden relative border-red-500 text-white rounded font-bold hover:bg-ricota transition-all group">
-            <span class="relative z-10 transition-transform group-hover:-translate-y-1 block">Escuchar ahora</span>
-        </a>
-    </section>
 
-    <!-- Footer -->
-    <footer class="bg-black py-10 text-center">
-        <!-- Uso sutil de márgenes y colores de texto -->
-        <p class="text-sm text-gray-400 font-mono tracking-widest uppercase">
-            Para Alien Duce<br>
-            Dios es digital
+    <!-- ═══════════════════════════════════════
+         FOOTER
+    ═══════════════════════════════════════ -->
+    <footer>
+        <div class="footer-brand">Patricio Rey y sus Redonditos de Ricota</div>
+        <div class="footer-sep" aria-hidden="true"></div>
+        <p class="footer-tagline">
+            <strong>Para Alien Duce</strong><br>
+            Dios es digital · Tributo no oficial · La Plata, Argentina
         </p>
     </footer>
 
-    <!-- Script para el carrusel de historia -->
+
+    <!-- ═══════════════════════════════════════
+         JAVASCRIPT
+    ═══════════════════════════════════════ -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const carouselImages = document.querySelectorAll('.carousel-img');
+        (() => {
+            'use strict';
+
+            /* ─────── MENÚ MOBILE ─────── */
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
+
+            hamburger.addEventListener('click', () => {
+                const isOpen = navLinks.classList.toggle('open');
+                hamburger.setAttribute('aria-expanded', isOpen);
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('open');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+
+            /* ─────── CARRUSEL ─────── */
+            const imgs = Array.from(document.querySelectorAll('.carousel-img'));
+            const dotsWrap = document.getElementById('carousel-dots');
+            const captionEl = document.getElementById('carousel-album-name');
             const btnPrev = document.getElementById('btn-prev');
             const btnNext = document.getElementById('btn-next');
-            let currentImageIndex = 0;
-            let autoPlayInterval;
-            
-            const showImage = (index) => {
-                carouselImages[currentImageIndex].classList.remove('opacity-100');
-                carouselImages[currentImageIndex].classList.add('opacity-0');
-                currentImageIndex = index;
-                carouselImages[currentImageIndex].classList.remove('opacity-0');
-                carouselImages[currentImageIndex].classList.add('opacity-100');
-            };
+            let current = 0;
+            let timer;
 
-            const nextImage = () => {
-                const newIndex = (currentImageIndex + 1) % carouselImages.length;
-                showImage(newIndex);
-            };
+            // Crear dots
+            imgs.forEach((img, i) => {
+                const dot = document.createElement('button');
+                dot.className = 'dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', `Ir a ${img.dataset.album}`);
+                dot.addEventListener('click', () => goTo(i));
+                dotsWrap.appendChild(dot);
+            });
 
-            const prevImage = () => {
-                const newIndex = (currentImageIndex - 1 + carouselImages.length) % carouselImages.length;
-                showImage(newIndex);
-            };
+            const dots = Array.from(dotsWrap.querySelectorAll('.dot'));
 
-            const startAutoPlay = () => {
-                clearInterval(autoPlayInterval);
-                autoPlayInterval = setInterval(nextImage, 4000); // Cambia de imagen cada 4 segundos
-            };
-
-            if(carouselImages.length > 1) {
-                startAutoPlay();
-
-                if (btnNext && btnPrev) {
-                    btnNext.addEventListener('click', () => {
-                        nextImage();
-                        startAutoPlay(); // Reinicia el timer al hacer click
-                    });
-
-                    btnPrev.addEventListener('click', () => {
-                        prevImage();
-                        startAutoPlay(); // Reinicia el timer al hacer click
-                    });
-                }
-            } else if (btnNext && btnPrev) {
-                btnNext.style.display = 'none';
-                btnPrev.style.display = 'none';
+            function goTo(idx) {
+                imgs[current].classList.remove('active');
+                dots[current].classList.remove('active');
+                current = (idx + imgs.length) % imgs.length;
+                imgs[current].classList.add('active');
+                dots[current].classList.add('active');
+                captionEl.textContent = imgs[current].dataset.album;
+                restart();
             }
-        });
+
+            function restart() {
+                clearInterval(timer);
+                timer = setInterval(() => goTo(current + 1), 4000);
+            }
+
+            btnNext.addEventListener('click', () => goTo(current + 1));
+            btnPrev.addEventListener('click', () => goTo(current - 1));
+            restart();
+
+
+            /* ─────── SCROLL REVEAL ─────── */
+            const revealEls = document.querySelectorAll('.reveal');
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('visible');
+                        io.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            revealEls.forEach(el => io.observe(el));
+
+        })();
     </script>
+
 </body>
+
 </html>
